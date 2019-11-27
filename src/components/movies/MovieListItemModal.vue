@@ -50,58 +50,74 @@
           </div>
         </div>
 
-          <hr style="background-color:white" />
-          
+        <hr style="background-color:white" />
+        <div>
           <p class="text-center">예고편</p>
           <span v-if="movie.video_url">
             <iframe :src="movie.video_url" frameborder="0" style="width:100% ;height:300px;"></iframe>
           </span>
           <span v-else>😱</span>
-
+        </div>
+        <div>
           <hr style="background-color:white" />
           <p class="text-center">OST</p>
           <span v-if="movie.ost_url">
             <iframe :src="movie.ost_url" frameborder="0" style="width:100% ;height:300px;"></iframe>
           </span>
           <span v-else>😱</span>
+        </div>
 
+        <div>
           <hr style="background-color:white" />
           <p class="text-center">REVIEW</p>
           <span v-if="isAuthenticated">
-            <div>
-              <div class="input-group">
-                <label for="comment">comment :</label>
-                <input id="comment" class="form-control ml-3" type="text" v-model="review.comment" />
+            <div class="row">
+              <div class="col-2">
+                <label for="comment">comment</label>
               </div>
-              <div class="input-group my-3">
+              <div class="input-group col">
+                <input id="comment" class="form-control" type="text" v-model="review.comment" />
+              </div>
+              <div class="col-1"></div>
+            </div>
 
-                <label for="score">score :</label>
-                <input id="score" class="form-control ml-4" type="range" min="0" max="10" step="1" v-model="review.score" />
+            <div class="row">
+              <div class="col-2">    
+                <label for="score" class="p-2">score</label>
+              </div>
+              <div class="input-group col">
+                <input id="score" class="form-control" type="range" min="0" max="10" step="1" v-model="review.score" />
                 <font v-model="review.score">{{review.score}}</font>
               </div>
-              <button class="btn btn-primary my-3" @click="createreview">리뷰생성</button>
+              <div class="col-3">
+                <button class="btn btn-primary my-3" @click="createreview">리뷰생성</button>
+              </div>
+              <div class="col-1"></div>
             </div>
+          </span>
+          <span v-else>로그인 후 볼 수 있습니다.</span>
+          </div>
+
+          <div>
             <hr style="background-color:white" />
             <p class="text-center">REVIEW</p>
-
-            <div>
               <div v-for="review in reviews" :key="review.id" class="my-3">
                 <p class="text-left">
                   [{{review.review_user['username']}}]
                   [{{review.score}}] {{review.comment}}
                 </p>
                 <div>
-                  {{review.create_at}}
-                  <button
-                    class="btn btn-success mx-2"
-                    @click="updatereview(review)"
-                  >수정</button>
-                  <button class="btn btn-danger" @click="deletereview(review)">삭제</button>
+                  <!-- {{review.create_at}} -->
+                  <span v-if="review.review_user.username === userName" class="col-4">
+                    <button
+                      class="btn btn-success mx-2"
+                      @click="updatereview(review)"
+                    >수정</button>
+                    <button class="btn btn-danger" @click="deletereview(review)">삭제</button>
+                  </span>
                 </div>
               </div>
-            </div>
-          </span>
-          <span v-else>로그인 후 볼 수 있습니다.</span>
+          </div>
         </div>
 
         <div class="modal-footer">
@@ -113,7 +129,7 @@
 </template>
 
 <script>
-
+import jwtDecode from "jwt-decode"
 import axios from "axios";
 export default {
   name: "movielistitemmodal",
@@ -129,9 +145,21 @@ export default {
       },
       isAuthenticated: this.$session.has("jwt"),
       reviews: [],
+      userName: ""
     };
   },
   methods: {
+    getUserName(){
+      this.$session.start()
+      const token = this.$session.get("jwt")
+      if (typeof(token) === "undefined") {
+        this.userName = ""
+      } else {
+        const decodedToken = jwtDecode(token)
+        this.userName = decodedToken.username
+        console.log(this.userName)
+      }
+    },
     createreview() {
       const token = this.$session.get("jwt");
       const header = {
@@ -210,13 +238,14 @@ export default {
     },
   },
   mounted() {
+    this.getUserName()
     axios
       .get(`http://127.0.0.1:8000/api/v1/movies/${this.movie.id}/reviewall/`)
       .then(res => {
         this.reviews = res.data;
       })
       .catch(err => console.log(err));
-  }
+  },
 };
 </script>
 
