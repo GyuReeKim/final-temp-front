@@ -25,9 +25,9 @@
       </div>
       <div class="form-group">
         <label for="email">email</label>
-        <input id="email" class="form-control" type="email" v-model="credential.email">
+        <input id="email" class="form-control" type="email" v-model="credential.email" @keyup.enter="signup">
       </div>
-      <button class="btn btn-primary" @click="signup">회원가입</button>
+      <button class="btn btn-primary" @click="signup" @keyup.enter="signup">회원가입</button>
     </div>
   </div>
 </template>

@@ -1,7 +1,9 @@
 <template>
   <div>
     <a href data-toggle="modal" v-bind:data-target="`#gg-${movie.id}`">
-      <img class="movie--poster my-3" v-bind:src="movie.poster_url" v-bind:alt="movie.title" />
+      <div id="img">
+        <img class="movie--poster my-3" v-bind:src="movie.poster_url" v-bind:alt="movie.title" />
+      </div>
     </a>
     <h4>
       {{movie.title}}
@@ -36,5 +38,13 @@ export default {
 <style>
 .movie--poster {
   width: 200px;
+}
+#img {
+  transition: transform .2s; /* Animation */
+}
+#img:hover {
+  opacity: 50%;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
 }
 </style>

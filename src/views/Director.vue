@@ -1,18 +1,18 @@
 <template>
-  <div class="home">
-    <MovieList v-bind:genres="genres" v-bind:movies="movies" v-bind:directors="directors" />
+  <div class="dirctor">
+    <DirectorList v-bind:genres="genres" v-bind:movies="movies" v-bind:directors="directors" />
   </div>
 </template>
 
 <script>
 // import router from '../router'
-import MovieList from "../components/movies/MovieList.vue";
+import DirectorList from "../components/movies/DirectorList.vue";
 import axios from "axios";
 
 export default {
-  name: "home",
+  name: "dirctor",
   components: {
-    MovieList,
+    DirectorList
   },
   data: function() {
     return {

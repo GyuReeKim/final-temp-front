@@ -1,9 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container my-3">
     <h3>😍{{username}}님의 페이지😍</h3>
-    <p>내가 등록한 평점</p>
     <div class="row">
-      <div class="col-12 col-md-6 col-lg-3 my-3" v-for="review in reviews" :key="review.id">
+      <div class="col-12 col-md-6 col-lg-3 my-5 mx-auto" v-for="review in reviews" :key="review.id">
         <div class="card bg-dark text-white m-2">
           <img :src="review.movie.poster_url" class="card-img" style="opacity: 0.4" />
           <div class="card-img-overlay row align-items-center">

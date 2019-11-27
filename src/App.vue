@@ -2,10 +2,11 @@
   <div id="app">
 
     <div id="nav">
-      <router-link to="/">Genre & Director</router-link> |   
+      <router-link to="/">Genre</router-link> |  
+      <router-link to="/Director">Director</router-link> |    
       <span v-if="isAuthenticated">      
         <router-link to="/recommend">Recommend Movie</router-link> |
-        <router-link to="/mypage">{{username}}</router-link> |
+        <router-link to="/mypage">{{username}}님 페이지</router-link> |
         <a href="#" @click.prevent="logout">Logout</a>
       </span>
       <span v-else>

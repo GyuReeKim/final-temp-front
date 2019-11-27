@@ -21,9 +21,9 @@
       </div>
       <div class="form-group">
         <label for="password">PASSWORD</label>
-        <input id="password" class="form-control" type="password" v-model="credential.password">
+        <input id="password" class="form-control" type="password" v-model="credential.password" @keyup.enter="login">
       </div>
-      <button class="btn btn-primary" @click="login">로그인</button>
+      <button class="btn btn-primary" @click="login" @keyup.enter="login">로그인</button>
     </div>
   </div>
 </template>

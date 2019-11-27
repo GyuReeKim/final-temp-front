@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Home from '../views/Home.vue'
+import Director from '../views/Director.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Recommend from '../views/Recommend.vue'
@@ -33,6 +35,11 @@ const routes = [
     path: '/Mypage',
     name: 'Mypage',
     component: Mypage
+  },
+  {
+    path: '/Director',
+    name: 'Director',
+    component: Director
   },
 ]
 

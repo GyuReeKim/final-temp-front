@@ -30,17 +30,17 @@
 
           <hr style="background-color:white" />
           <p class="text-center">예고편</p>
-          <span v-if="movie.video_url">
-            <iframe :src="movie.video_url" frameborder="0" style="width:100% ;height:300px;"></iframe>
-          </span>
-          <span v-else>😱</span>
+          <div v-if="movie.video_url">
+            <iframe :src="movie.video_url" frameborder="0" style="width:100% ;height:100%;"></iframe>
+          </div>
+          <div v-else>😱</div>
 
           <hr style="background-color:white" />
           <p class="text-center">OST</p>
-          <span v-if="movie.ost_url">
-            <iframe :src="movie.ost_url" frameborder="0" style="width:100% ;height:300px;"></iframe>
-          </span>
-          <span v-else>😱</span>
+          <div v-if="movie.ost_url">
+            <iframe :src="movie.ost_url" frameborder="0" style="width:100% ;height:100%;"></iframe>
+          </div>
+          <div v-else>😱</div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -74,4 +74,5 @@ export default {
 </script>
 
 <style>
+
 </style>

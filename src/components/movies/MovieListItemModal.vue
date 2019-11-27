@@ -7,7 +7,7 @@
     data-backdrop="static"
     data-keypress="false"
   >
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content bg-dark text-white">
         <div class="modal-header">
           <h5 class="modal-title">🎬 {{movie.title}} ({{movie.title_en}})</h5>
@@ -81,7 +81,7 @@
               <div class="col-1"></div>
             </div>
 
-            <div class="row">
+            <div class="row my-3">
               <div class="col-2">    
                 <label for="score" class="p-2">score</label>
               </div>
@@ -250,4 +250,5 @@ export default {
 </script>
 
 <style>
+
 </style>
